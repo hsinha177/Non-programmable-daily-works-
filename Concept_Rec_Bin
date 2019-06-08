@@ -1,0 +1,5 @@
+#Concept of Recycle bin#
+
+Recycle Bin works on reference. The recycle bin contains the pointer of the file. When the file is deleted it is not actually deleted. The link of the data are deleted from the VTABLE & the data becomes unaccessible. When the file is deleted its reference is sent to recycle bin & then windows mark its pointer as NULL. Because of this when we copy data ample of time in recycle bin it doesn't multiply the size of data consumed on disk. This concept states that :
+
+When ever any file/folder is deleted, it's pointer is deleted not the actual data. So this is the reason recycle bin is created. But once the file/folder is deletedd from recycle bin then the OS marks that data's pointer as unavilable in the VTABLE & the data is permanently lost on the disk. Next time when somone writes on the same sector of the disk then that data is overlapped & this is the reason behind the recovery of permanently deleted files.
