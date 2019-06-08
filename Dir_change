@@ -1,0 +1,30 @@
+#THESE STEPS WILL CHANGE THE DEFAULT DESKTOP DIR TO ANY OTHER DIRECTORY#
+
+
+				       : BY COMMAND-LINE :
+
+step 1 : open terminal
+step 2 : type the command "ls -a" 
+
+#this command will show hidden files in /home/usr
+
+step 3 : now select the ".config" directory by : "cd .config" command
+step 4 : type "ls" to see the files inside
+step 5 : type "gedit user-dirs.dirs"
+step 6 : in text editor press "i" to activate insert option now change the 
+	 "XDG_DESKTOP_DIR="$HOME/Desktop"" : "=$HOME/Desktop" to "=$HOME/[directory]" & the 		 desktop view will change.
+ NOTE : DIRECTORY IS CASE SENSETIVE, ENTER THE RIGHT NAME & FULL NAME.
+step 7 : now save the file 
+step 8 : log out from your account & log in again, DESKTOP_DIR will be changed & applied.\
+
+************************************************************************************************* 
+				      	: BY GUI :
+step 1 : go to files
+step 2 : press "LCtrl+H"
+step 3 : open .config
+step 4 : open user-dirs.dirs
+step 5 : change the "XDG_DESKTOP_DIR="$HOME/Desktop"" : "=$HOME/Desktop" to "=$HOME/[directory]"
+step 6 : Save the file
+step 7 : log out & login to your account to see the applied changes.
+
+*************************************************************************************************
