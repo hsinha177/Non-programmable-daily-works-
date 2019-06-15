@@ -1,0 +1,54 @@
+AMI or Server OS: CentOS 7 (x86_64) - with Updates HVM
+
+#1.instance create:
+	type & search : CentOS 7 (x86_64)
+	install the instance from aws 
+
+#2. disk accidental termination policy
+	select instance & click on action > instance settings > change termination protection > enable
+
+#3. Attach one Elastic IP to your instance 
+	select network & security > elastic IPs > allocate new address > allocate > close
+	select address & click associate address > select instance > select private ip > associate 
+
+#########################################################################################################################
+
+								Prerequisite
+1. Check all things like server version, disk size of root volume & extra disk, RAM, CPU
+
+	for server version : cat /etc/os-release
+	for disk size : lsblk
+	to check CPU : cat /proc/cpuinfo
+	to check RAM : free -m [m to see in MB]
+
+2.Update server packages
+	check for update : yum check-update
+	update packages : yum update
+
+3.Format disk and mount
+	a) Make disk2 volume LVM type for future app data size grow requirement
+		yum install lvm2
+		pvcreate /dev/xvdf
+		vgcreate myvirhdd /dev/xvdf
+		lvcreate --name disk2 --size 4G myvirhdd
+	b) Format with xfs file system
+		mkfs.xfs /dev/mapper/myvirhdd-disk2
+	c) mount this on /home2 with "no execution binary " security flag
+		mount  /dev/mapper/myvirhdd-disk2  /home2
+		vim /etc/fstab :
+			[i] > paste :/dev/mapper/myvirhdd-disk2    /home2     xfs    noexec  > [esc] :wq
+		mount -a
+	*to change the home2 type similar to home use this command : cacon -t home_root_t /home2
+4.Disable Selinux
+	vi /etc/selinux/config > [i] set SELINUX=disable [esc] :wq
+5.Set timezone of Server to IST
+	ln -sf /usr/share/zoneinfo/Asia/Calcutta localtime
+6. Install basic utility like netstat, wget, vim, git
+	netstat : yum install net-tools
+	wget : yum install wget
+	vim : yum install vim
+	git : yum install git
+7. Reboot your server to verify and test all things
+	yes, it worked 100% fine
+8. Congiure your motd file on server so i can get more infomation dynamically about server whenever we logged in and you can find out format of motd through  https://adhocnw.org/motd.txt
+	cd /etc/
