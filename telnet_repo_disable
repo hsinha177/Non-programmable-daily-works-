@@ -1,0 +1,5 @@
+To disable the telnet repo : 
+yum-config-manager --disable   rhui-REGION-rhel-server-releases
+
+#but this will fully disable this repo & user will not be able to install any package from this repo
+#eg, after disableing this you will not be able to install "wget" also.
